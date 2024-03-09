@@ -11,23 +11,32 @@ projects-installers() {
                 echo "Expected a project name"
                 return 1
             fi
-            echo "$(pwd)"
+
+            ###> INITIALIZATION
             echo "Installing WP project type in $2"
             mkdir $2
-            cp "$scriptRealDirectory/wordpress/docker-compose.yml" $2
+            cd $2
+            cp "$scriptRealDirectory/wordpress/docker-compose.yml" .
             echo "WP project successfully initialized"
+            echo ""
+            ###< INITIALIZATION
+            
+            ###> OPTIONS DEFINITION
+            doDockerComposeUp=true
+            ###< OPTIONS DEFINITION
 
+            ###> OPTIONS EXECUTION
+            echo "Docker execution"
+            if [ "$doDockerComposeUp" = true ]; then
+                docker-compose up -d
+            fi
+            ###< OPTIONS EXECUTION
             ;;
         "second")
             echo "second case"
-            ;;
-        "third" | "fourth")
-            echo "third or fourth case"
             ;;
         *)
             echo "other cases"
             ;;
     esac
 }
-
-alias pi="projects-installers"
