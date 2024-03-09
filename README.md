@@ -4,7 +4,6 @@ Clone the project somewhere where it belongs according to you, but remember when
 I suggest you to clone it where your .bashrc is.
 ```
 cd ~
-
 git clone https://github.com/AntoineP83/projects-installers
 ```
 
